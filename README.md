@@ -19,3 +19,9 @@ or
 ```
 docker run ktamas77/gource gource <your commands here>
 ```
+
+### AWS Codebuild setup
+
+It's also possible to run this docker container in AWS Codebuild,
+entirelly headless, without any display, for an example to render videos weekly.
+Detailed Codebuild setup information is in the `buildspec.yml` file.

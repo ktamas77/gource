@@ -6,7 +6,12 @@ version: 0.2
 #
 # Setup:
 #
-# AWS Codepipeline => Github Source => Docker(ktamas77/gource) -> Build(buildpsec) -> MP4 => S3 bucket.
+# AWS CodeBuild:
+#    1. Set Up your own Github Source Repository
+#    2. Custom Image: 'ktamas77/gource' (docker hub)
+#    3. Buildpspec location: '/codebuild_config/buildspec.yml'
+#    4. Set up your own S3 buckets for artifact storage (mp4)
+#    5. Set up weekly build triggers for the build.
 #
 
 phases:
