@@ -27,5 +27,8 @@ RUN tar -vzxf gource-0.49.tar.gz
 WORKDIR /install/gource/gource-0.49
 RUN ./configure && make && make install
 
+RUN mkdir -p /codebuild_config
+COPY buildspec.yml /codebuild_config
+
 WORKDIR /home
 RUN rm -rf /install

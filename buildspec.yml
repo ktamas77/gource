@@ -2,7 +2,7 @@ version: 0.2
 # This is a BuildSpec file to use it with Amazon CodePipeline as a Build Action Item
 # Docker Image: ktamas77/gource
 #
-# This configuration will render the last week of the given source repository.
+# This configuration will render the last week of the given source repository with 10 seconds / day speed.
 #
 # Setup:
 #
