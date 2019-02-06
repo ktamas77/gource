@@ -1,7 +1,6 @@
 FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND="noninteractive"
-ENV XVFB_WHD="3840x2160x24"
 
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y wget make g++ gcc pkg-config software-properties-common psmisc
