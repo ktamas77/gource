@@ -1,0 +1,24 @@
+version: 0.2
+# This is a BuildSpec file to use it with Amazon CodePipeline as a Build Action Item
+# Docker Image: ktamas77/gource
+#
+# This configuration will render the last week of the given source repository.
+#
+# Setup:
+#
+# AWS Codepipeline => Github Source => Docker(ktamas77/gource) -> Build(buildpsec) -> MP4 => S3 bucket.
+#
+
+phases:
+  install:
+    commands:
+      - mkdir -p /home/video
+  pre-build:
+    commands:
+      - DATE_WEEK_AGO=$(date "+%Y-%m-%d" -d "7 days ago")
+  build:
+    commands:
+      - xvfb-run --auto-servernum --server-args='-screen 0, 1920x1080x24' gource --start-date='${DATE_WEEK_AGO}' --path '.' -1920x1080 -s 10 --highlight-users --highlight-dirs --hide-filenames --camera-mode track -key --padding 1.28 --user-scale 4.0 --date-format "%Y.%m.%d" --font-size 24 --dir-name-depth 1 -a 2 -o - | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264 -preset ultrafast -pix_fmt yuv420p -crf 1 -threads 0 -bf 0 /home/video/gource.mp4
+artifacts:
+    files:
+      - /home/video/gource.mp4
